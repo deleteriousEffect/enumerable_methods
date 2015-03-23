@@ -16,8 +16,19 @@ module Enumerable
       i += 1
     end
   end
+
+  def my_select
+    selected_elements = []
+
+    self.my_each do |element|
+      selected_elements << element if (yield element) == true
+    end
+    selected_elements
+  end
 end
 
 [1, 2, 3, 4].my_each { |n| print n }
 
 [1, 2, 3, 4].my_each_with_index { |e, i| print "this is element #{e}, this is its index #{i} \n" }
+
+print [13, 12, 4, 5].my_select { |e| e % 2 == 0 }
