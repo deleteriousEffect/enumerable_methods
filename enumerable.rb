@@ -1,9 +1,8 @@
 module Enumerable
   def my_each
     i = 0
-    self_len = self.length
 
-    while i < self_len
+    while i < self.length
       yield self[i]
       i += 1
     end
@@ -11,9 +10,8 @@ module Enumerable
 
   def my_each_with_index
     i = 0
-    self_len = self.length
 
-    while i < self_len
+    while i < self.length
       yield self[i], i
       i += 1
     end
