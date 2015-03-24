@@ -40,6 +40,13 @@ module Enumerable
     end
     false
   end
+
+  def my_none
+    my_each do |element|
+      return false if (yield element) == true
+    end
+    true
+  end
 end
 
 [1, 2, 3, 4].my_each { |n| print n }
@@ -50,8 +57,11 @@ end
 
 print [13, 12, 4, 5].my_select(&:even?)
 
-puts [2, 4, 6, 8].my_all(&even?)
-puts [3, 4, 6, 8].my_all(&even?)
+puts [2, 4, 6, 8].my_all(&:even?)
+puts [3, 4, 6, 8].my_all(&:even?)
 
-puts [1, 2, 3, 4].my_any(&even?)
-puts [1, 1, 1, 1].my_any(&even?)
+puts [1, 2, 3, 4].my_any(&:even?)
+puts [1, 1, 1, 1].my_any(&:even?)
+
+puts [1, 1, 1, 1].my_none(&:even?)
+puts [1, 2, 3, 4].my_none(&:even?)
