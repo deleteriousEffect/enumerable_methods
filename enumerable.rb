@@ -32,6 +32,16 @@ module Enumerable
         return false
       end
       return true
+    end
+  end
+
+  def my_any
+    self.my_each do |element|
+      if (yield element) == true
+        return true
+      end
+    end
+    false
   end
 end
 
@@ -41,5 +51,8 @@ end
 
 print [13, 12, 4, 5].my_select { |e| e.even? }
 
-[2, 4, 6, 8].my_all { |e| e.even? }
-[3, 4, 6, 8].my_all { |e| e.even? }
+puts [2, 4, 6, 8].my_all { |e| e.even? }
+puts [3, 4, 6, 8].my_all { |e| e.even? }
+
+puts [1, 2, 3, 4].my_any { |e| e.even? }
+puts [1, 1, 1, 1].my_any { |e| e.even? }
