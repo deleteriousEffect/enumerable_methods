@@ -2,7 +2,7 @@ module Enumerable
   def my_each
     i = 0
 
-    while i < self.length
+    while i < length
       yield self[i]
       i += 1
     end
@@ -11,7 +11,7 @@ module Enumerable
   def my_each_with_index
     i = 0
 
-    while i < self.length
+    while i < length
       yield self[i], i
       i += 1
     end
@@ -20,14 +20,14 @@ module Enumerable
   def my_select
     selected_elements = []
 
-    self.my_each do |element|
+    my_each do |element|
       selected_elements << element if (yield element) == true
     end
     selected_elements
   end
 
   def my_all
-    self.my_each do |element|
+    my_each do |element|
       if (yield element) == false
         return false
       end
@@ -36,7 +36,7 @@ module Enumerable
   end
 
   def my_any
-    self.my_each do |element|
+    my_each do |element|
       if (yield element) == true
         return true
       end
