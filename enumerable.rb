@@ -64,12 +64,14 @@ module Enumerable
     count
   end
 
-  def my_map
+  def my_map(proc)
     i = 0
 
-    my_each do |element|
-      self[i] = yield element
-      i += 1
+    if proc.is_a? Proc
+      my_each do |element|
+        self[i] = proc.call(element)
+        i += 1
+      end
     end
     self
   end
@@ -106,7 +108,11 @@ puts [1, 2, 3, 4, 4].my_count(&:even?)
 puts [1, 2, 3, 4, 4].my_count(4)
 puts [1, 2, 3, 4, 4].my_count
 
-puts [1, 2, 3, 4].my_map { 'hello' }
-puts [1, 2, 3, 4].my_map { |e| e + e }
+#puts [1, 2, 3, 4].my_map { 'hello' }
+#puts [1, 2, 3, 4].my_map { |e| e + e }
 
 puts [1, 2, 3, 4].my_inject { |acc, ele| acc + ele }
+
+double = Proc.new { |e| e + e }
+
+puts [1, 2, 3, 4].my_map(double)
