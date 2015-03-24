@@ -63,6 +63,19 @@ module Enumerable
     end
     count
   end
+
+  def my_map
+    i = 0
+
+    my_each do |element|
+      self[i] = yield element
+      i += 1
+    end
+    self
+  end
+
+  def my_inject
+  end
 end
 
 [1, 2, 3, 4].my_each { |n| print n }
@@ -85,3 +98,8 @@ puts [1, 2, 3, 4].my_none(&:even?)
 puts [1, 2, 3, 4, 4].my_count(&:even?)
 puts [1, 2, 3, 4, 4].my_count(4)
 puts [1, 2, 3, 4, 4].my_count
+
+puts [1, 2, 3, 4].my_map { 'hello' }
+puts [1, 2, 3, 4].my_map { |e| e + e }
+
+puts [1, 2, 3, 4].my_inject { |acc, ele| acc + ele }
