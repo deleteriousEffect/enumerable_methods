@@ -75,6 +75,13 @@ module Enumerable
   end
 
   def my_inject
+    i = 1
+    accumulator = self[0]
+    while i < length
+      accumulator = (yield accumulator, self[i])
+      i += 1
+    end
+    accumulator
   end
 end
 
