@@ -64,6 +64,8 @@ module Enumerable
     count
   end
 
+  # Takes a proc and an optional block which operates on the element
+  # after it has been modified by the proc.
   def my_map(proc)
     i = 0
 
@@ -106,9 +108,6 @@ puts [1, 2, 3, 4].my_none(&:even?)
 puts [1, 2, 3, 4, 4].my_count(&:even?)
 puts [1, 2, 3, 4, 4].my_count(4)
 puts [1, 2, 3, 4, 4].my_count
-
-#puts [1, 2, 3, 4].my_map { 'hello' }
-#puts [1, 2, 3, 4].my_map { |e| e + e }
 
 puts [1, 2, 3, 4].my_inject { |acc, ele| acc + ele }
 
