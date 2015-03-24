@@ -28,18 +28,14 @@ module Enumerable
 
   def my_all
     my_each do |element|
-      if (yield element) == false
-        return false
-      end
+      return false if (yield element) == false
       return true
     end
   end
 
   def my_any
     my_each do |element|
-      if (yield element) == true
-        return true
-      end
+      return true if (yield element) == true
     end
     false
   end
