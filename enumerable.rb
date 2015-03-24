@@ -67,11 +67,10 @@ module Enumerable
   def my_map(proc)
     i = 0
 
-    if proc.is_a? Proc
-      my_each do |element|
-        self[i] = proc.call(element)
-        i += 1
-      end
+    my_each do |element|
+      self[i] = proc.call(element)
+      self[i] = yield self[i] if block_given?
+      i += 1
     end
     self
   end
@@ -116,3 +115,4 @@ puts [1, 2, 3, 4].my_inject { |acc, ele| acc + ele }
 double = Proc.new { |e| e + e }
 
 puts [1, 2, 3, 4].my_map(double)
+puts [1, 2, 3, 4].my_map(double) { |e| e - 1 }
