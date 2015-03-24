@@ -1,3 +1,4 @@
+# Rebuilds of the Ruby Enumerable Methods
 module Enumerable
   def my_each
     i = 0
@@ -43,12 +44,14 @@ end
 
 [1, 2, 3, 4].my_each { |n| print n }
 
-[1, 2, 3, 4].my_each_with_index { |e, i| print "this is element #{e}, this is its index #{i} \n" }
+[1, 2, 3, 4].my_each_with_index do |e, i|
+  print "this is element #{e}, this is its index #{i} \n"
+end
 
-print [13, 12, 4, 5].my_select { |e| e.even? }
+print [13, 12, 4, 5].my_select(&:even?)
 
-puts [2, 4, 6, 8].my_all { |e| e.even? }
-puts [3, 4, 6, 8].my_all { |e| e.even? }
+puts [2, 4, 6, 8].my_all(&even?)
+puts [3, 4, 6, 8].my_all(&even?)
 
-puts [1, 2, 3, 4].my_any { |e| e.even? }
-puts [1, 1, 1, 1].my_any { |e| e.even? }
+puts [1, 2, 3, 4].my_any(&even?)
+puts [1, 1, 1, 1].my_any(&even?)
