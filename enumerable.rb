@@ -47,6 +47,22 @@ module Enumerable
     end
     true
   end
+
+  def my_count(match = nil)
+    count = 0
+
+    if !match.nil?
+      my_each do |element|
+        count += 1 if element == match
+      end
+    elsif block_given?
+      my_each do |element|
+        count += 1 if (yield element) == true
+      end
+    else count = length
+    end
+    count
+  end
 end
 
 [1, 2, 3, 4].my_each { |n| print n }
@@ -65,3 +81,7 @@ puts [1, 1, 1, 1].my_any(&:even?)
 
 puts [1, 1, 1, 1].my_none(&:even?)
 puts [1, 2, 3, 4].my_none(&:even?)
+
+puts [1, 2, 3, 4, 4].my_count(&:even?)
+puts [1, 2, 3, 4, 4].my_count(4)
+puts [1, 2, 3, 4, 4].my_count
